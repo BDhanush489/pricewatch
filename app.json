@@ -15,7 +15,7 @@
     "android": {
       "package": "com.bdhanush.pricewatch",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#E9B940",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -84,6 +84,12 @@
         },
         "projectId": "63d4de28-6fb9-46a3-ae99-f74ecd6517c6"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/63d4de28-6fb9-46a3-ae99-f74ecd6517c6"
     }
   }
 }
