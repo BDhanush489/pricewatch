@@ -1,15 +1,19 @@
 {
   "expo": {
-    "name": "pricewatch",
+    "name": "PriceWatch",
     "slug": "pricewatch",
-    "version": "1.0.0",
+    "scheme": "pricewatch",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#f7f5f0",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bdhanush.pricewatch"
     },
     "android": {
+      "package": "com.bdhanush.pricewatch",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -20,6 +24,66 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-widgets",
+        {
+          "enableAndroid": true,
+          "widgets": [
+            {
+              "name": "RatesWidget",
+              "displayName": "Gold & Silver (Bangalore)",
+              "description": "Today's 24K, 22K gold and silver rates per gram",
+              "ios": null,
+              "android": {
+                "minWidth": 180,
+                "minHeight": 180,
+                "targetCellWidth": 3,
+                "targetCellHeight": 3,
+                "resizeMode": "both"
+              }
+            }
+          ]
+        }
+      ],
+      "expo-background-task",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/android-icon-monochrome.png",
+          "color": "#b7860b",
+          "enableRemoteNotifications": false
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "build": {
+          "experimental": {
+            "ios": {
+              "appExtensions": [
+                {
+                  "targetName": "ExpoWidgetsTarget",
+                  "bundleIdentifier": "com.bdhanush.pricewatch.ExpoWidgetsTarget",
+                  "entitlements": {
+                    "com.apple.security.application-groups": [
+                      "group.com.bdhanush.pricewatch"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "projectId": "63d4de28-6fb9-46a3-ae99-f74ecd6517c6"
+      }
     }
   }
 }
