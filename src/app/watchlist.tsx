@@ -39,7 +39,8 @@ export default function WatchlistScreen() {
 
   const addItem = async () => {
     const u = url.trim();
-    if (!/^https?:\/\//.test(u)) { setMsg('Paste a full product link starting with https://'); return; }
+    // Release builds block plain http:// requests, so only secure links can be checked.
+    if (!/^https:\/\/\S+\.\S+/i.test(u)) { setMsg('Paste a full product link starting with https://'); return; }
     setMsg(null);
     const it: Item = { id: Date.now().toString(), url: u, category: tab, title: u };
     setUrl('');

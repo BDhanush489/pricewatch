@@ -1,5 +1,7 @@
 // Fetches a product page and extracts price. Works on most stores via JSON-LD / meta tags,
 // with fallbacks for Amazon & Flipkart. Native fetch has no CORS, so this runs on-device.
+import { fetchWithTimeout } from './http';
+
 const UA =
   'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
 
@@ -64,7 +66,7 @@ function title(html: string) {
 }
 
 export async function scrapePrice(url: string): Promise<ScrapeResult> {
-  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'en-IN,en;q=0.9', Accept: 'text/html' } });
+  const res = await fetchWithTimeout(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'en-IN,en;q=0.9', Accept: 'text/html' } });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const html = await res.text();
   if (/captcha|robot check/i.test(html) && !/price/i.test(html)) throw new Error('Blocked by captcha — try again later');

@@ -9,6 +9,7 @@
 // Because history uses the same factor, the chart and buy advice line up with Bangalore prices too.
 // @ts-ignore AsyncStorage may be installed without its type declarations.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { fetchWithTimeout } from './http';
 
 export const TROY_OZ_G = 31.1035;
 export const GST = 0.03;
@@ -38,7 +39,7 @@ export const toRates = (s: Spot, c: Calibration): Rates => ({
 const perGram = (usdPerOz: number, usdInr: number) => (usdPerOz / TROY_OZ_G) * usdInr;
 
 const getJson = async (url: string) => {
-  const r = await fetch(url, { headers: { Accept: 'application/json' } });
+  const r = await fetchWithTimeout(url, { headers: { Accept: 'application/json' } });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return r.json();
 };

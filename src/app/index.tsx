@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Linking, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTabBarSpace } from '../components/GlassTabBar';
 import { PriceChart } from '../components/PriceChart';
@@ -242,7 +242,15 @@ export default function RatesScreen() {
         </View>
 
         <Text style={s.disclaimer}>
-          Prices follow live international rates, matched to the Bangalore board rate. GST (3%) and making charges are extra.
+          Prices are estimates: live international rates, matched to the Bangalore board rate. Confirm with your
+          jeweller before buying. GST (3%) and making charges are extra.
+        </Text>
+        <Text style={s.disclaimer}>
+          Sources: spot prices from{' '}
+          <Text style={s.sourceLink} onPress={() => Linking.openURL('https://gold-api.com')}>gold-api.com</Text>
+          {' · '}
+          <Text style={s.sourceLink} onPress={() => Linking.openURL('https://www.exchangerate-api.com')}>Rates By Exchange Rate API</Text>
+          {' · '}history and backup prices from Yahoo Finance.
         </Text>
       </ScrollView>
     </SafeAreaView>
@@ -358,6 +366,7 @@ const makeStyles = (c: Colors) => StyleSheet.create({
   reason: { color: c.text, opacity: 0.85, fontSize: 14, lineHeight: 21, marginTop: 4 },
   tip: { color: c.sub, fontSize: 13, lineHeight: 19, marginTop: 14 },
   disclaimer: { color: c.faint, fontSize: 11, marginTop: 8, lineHeight: 16 },
+  sourceLink: { color: c.sub, textDecorationLine: 'underline' },
   rangeTrack: { height: 6, borderRadius: 3, marginHorizontal: 8 },
   rangeDot: { position: 'absolute', top: -5, width: 16, height: 16, borderRadius: 8, marginLeft: -8, borderWidth: 2 },
   rangeLabels: { flexDirection: 'row', justifyContent: 'space-between' },
