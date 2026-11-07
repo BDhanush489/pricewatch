@@ -1,0 +1,1 @@
+{ "preset": "jest-expo", "testEnvironment": "node", "transformIgnorePatterns": ["node_modules/(?!(expo|react-native|@react-native|@react-native-async-storage)/)"] }
