@@ -15,7 +15,7 @@
     "android": {
       "package": "com.bdhanush.pricewatch",
       "adaptiveIcon": {
-        "backgroundColor": "#E9B940",
+        "backgroundColor": "#1C1710",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
